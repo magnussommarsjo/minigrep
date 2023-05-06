@@ -13,11 +13,14 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
 
-    let contents = fs::read_to_string(config.file_path)
-        .expect("Should have been able to read the file");
+    run(config)
+}
+
+fn run(config: Config) {
+    let contents =
+        fs::read_to_string(config.file_path).expect("Should have been able to read the file");
 
     println!("With contents:\n{contents}");
-    
 }
 
 struct Config {
@@ -32,7 +35,7 @@ impl Config {
         }
         let query = args[1].clone();
         let file_path = args[2].clone();
-    
-        Ok(Config {query, file_path})
-    }    
+
+        Ok(Config { query, file_path })
+    }
 }
